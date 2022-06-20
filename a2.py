@@ -5,7 +5,7 @@
 import math
 
 def f1(x,y):
-  #r = sqrt( 5 - (y - 4)**2 )
+  #r = math.sqrt( 5 - (y - 4)**2 )
   r = (5 - (y - 4)**2 - 16 - x**2) / -8
   return r
 
@@ -18,7 +18,7 @@ def f2(x,y):
 def gauss_seidel(x, y): #initial value
   es = 10**-4
   iter = 0
-  maxiter = 10000000
+  maxiter = 50
 
   while(1):
     iter = iter +1

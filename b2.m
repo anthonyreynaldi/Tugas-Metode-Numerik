@@ -3,23 +3,39 @@
 %Jeremy Dionn     - C14200206
 %Wendy Santoso    - C14200036
 
+##function r = f1(x,y, type)
+##  if (type == 1)
+##    r = sqrt(y + 5*x*y);
+##  elseif (type == 2)
+##    r = (x.^2 - y) / 5*y;
+##  endif
+##endfunction
+##
+##function r = f2(x,y)
+##  r = -x.^2 + x + 0.75;
+##endfunction
+
 function r = f1(x,y, type)
   if (type == 1)
-    r = (5 - (y - 4).^2 - 16 - x.^2) / -8;
+    r = y + x.^2 - 0.75;
   elseif (type == 2)
-    r = sqrt(5 - (y - 4).^2 + 8*x - 16);
+    r = sqrt( x - y + 0.75);
   endif
 endfunction
 
-function r = f2(x,y)
-  r = sqrt( 16 - x.^2 );
+function r = f2(x,y, type)
+  if (type == 1)
+    r = x.^2 - 5*x*y;
+  elseif (type == 2)
+    r = (x.^2 - y) / 5*x;
+  endif
 endfunction
 
 
-function result = gauss_seidel(x, y, type) %initial value
+function result = gauss_seidel(x, y, type1, type2) %initial value
   es = 10.^-4;
   iter = 0;
-  maxiter = 50;
+  maxiter = 10000000;
 
   while(1)
     iter = iter +1;
@@ -29,8 +45,8 @@ function result = gauss_seidel(x, y, type) %initial value
     yold = y;
     
     %determine new value of x and y
-    x = f1(x, y, type);
-    y = f2(x, y);
+    x = f1(x, y, type1);
+    y = f2(x, y, type2);
     
     %count error approx
     if (x ~= 0)
@@ -54,8 +70,5 @@ endfunction
 
 #titik 1
 disp("Titik 1 (1.8, 3.6)");
-disp(gauss_seidel(1.8, 3.5, 1));
-
-#titik 2
-disp("Titik 2 (3.6, 1.8)");
-disp(gauss_seidel(3.5, 1.8, 2));
+disp(gauss_seidel(1.2, 1.2, 1, 1));
+disp(gauss_seidel(1.2, 1.2, 2, 2));

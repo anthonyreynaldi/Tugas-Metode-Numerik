@@ -53,9 +53,9 @@ function result = gauss_seidel(x, y, type) %initial value
 endfunction
 
 #titik 1
-disp("Titik 1 (1.8, 3.6)");
+disp("Titik 1 (1.8, 3.5)");
 disp(gauss_seidel(1.8, 3.5, 1));
 
 #titik 2
-disp("Titik 2 (3.6, 1.8)");
+disp("Titik 2 (3.5, 1.8)");
 disp(gauss_seidel(3.5, 1.8, 2));

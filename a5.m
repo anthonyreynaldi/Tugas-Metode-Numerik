@@ -10,9 +10,9 @@ endfunction
 format compact
 
 #titik 1
-disp("Titik 1 (1.8, 3.6)");
+disp("Titik 1 (1.8, 3.5)");
 [x,fx] = fsolve(@fun,[1.8; 3.5])
 
 #titik 2
-disp("Titik 2 (3.6, 1.8)");
+disp("Titik 2 (3.5, 1.8)");
 [x,fx] = fsolve(@fun,[3.5; 1.8])

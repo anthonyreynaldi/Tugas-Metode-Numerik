@@ -3,36 +3,12 @@
 %Jeremy Dionn     - C14200206
 %Wendy Santoso    - C14200036
 
-%persamaan dasar lingkaran
-% x^2 + y^2 = r^2
-
-%persamaan 1
-%persamaan: (x - 4)^2 + (y - 4)^2 = 5
-r1 = sqrt(5);
-x1 = 4;
-y1 = 4;
-th1 = 0:pi/50:2*pi;
-xunit1 = r1 * cos(th1) + x1;
-yunit1 = r1 * sin(th1) + y1;
-plot(xunit1, yunit1);
-
-hold on
-
-%persamaan 2
-%persamaan: x^2 + y^2 = 16
-r2 = sqrt(16);
-x2 = 0;
-y2 = 0;
-th2 = 0:pi/50:2*pi;
-xunit2 = r2 * cos(th2) + x2;
-yunit2 = r2 * sin(th2) + y2;
-plot(xunit2, yunit2);
-
-hold on
-
-function r = f1(x,y)
-  %r = sqrt( 5 - (y - 4).^2 );
-  r = (5 - (y - 4).^2 - 16 - x.^2) / -8;
+function r = f1(x,y, type)
+  if (type == 1)
+    r = (5 - (y - 4).^2 - 16 - x.^2) / -8;
+  elseif (type == 2)
+    r = sqrt(5 - (y - 4).^2 + 8*x - 16);
+  endif
 endfunction
 
 function r = f2(x,y)
@@ -40,14 +16,11 @@ function r = f2(x,y)
 endfunction
 
 
-function result = gauss_seidel(x, y) %initial value
+function result = gauss_seidel(x, y, type) %initial value
   es = 10.^-4;
   iter = 0;
-  maxiter = 10000000;
-  lambda = 0.5;
-  
-  plotx = [x];
-  ploty = [y];
+  maxiter = 50;
+  lamda = 0.5;
 
   while(1)
     iter = iter +1;
@@ -57,14 +30,12 @@ function result = gauss_seidel(x, y) %initial value
     yold = y;
     
     %determine new value of x and y
-    x = f1(x, y);
-    x = lambda*x + (1 - lambda)*xold;   #relaxed
-    
+    x = f1(x, y, type);
+    x = lamda * x + (1 - lamda) * xold; #relaxed
+
     y = f2(x, y);
-    y = lambda*y + (1 - lambda)*yold;   #relaxed
-    
-    plotx = [plotx; x];
-    ploty = [ploty; y];
+    y = lamda * y + (1 - lamda) * yold;  # relaxed
+
     
     %count error approx
     if (x ~= 0)
@@ -83,19 +54,13 @@ function result = gauss_seidel(x, y) %initial value
   endwhile
   
   result = [x y];
-  
-  plot(plotx, ploty);
-  
-  hold on
 
 endfunction
 
 #titik 1
-disp("Titik 1 (1.8, 3.6)");
-disp(gauss_seidel(1.8, 3.5));
+disp("Titik 1 (1.8, 3.5)");
+disp(gauss_seidel(1.8, 3.5, 1));
 
 #titik 2
-disp("Titik 2 (3.6, 1.8)");
-disp(gauss_seidel(3.5, 1.8));
-
-hold off
+disp("Titik 2 (3.5, 1.8)");
+disp(gauss_seidel(3.5, 1.8, 2));

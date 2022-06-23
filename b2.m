@@ -3,17 +3,6 @@
 %Jeremy Dionn     - C14200206
 %Wendy Santoso    - C14200036
 
-##function r = f1(x,y, type)
-##  if (type == 1)
-##    r = sqrt(y + 5*x*y);
-##  elseif (type == 2)
-##    r = (x.^2 - y) / 5*y;
-##  endif
-##endfunction
-##
-##function r = f2(x,y)
-##  r = -x.^2 + x + 0.75;
-##endfunction
 
 function r = f1(x,y, type)
   if (type == 1)
@@ -69,6 +58,5 @@ function result = gauss_seidel(x, y, type1, type2) %initial value
 endfunction
 
 #titik 1
-disp("Titik 1 (1.8, 3.6)");
-disp(gauss_seidel(1.2, 1.2, 1, 1));
+disp("Titik 1 (1.2, 1.2)");
 disp(gauss_seidel(1.2, 1.2, 2, 2));

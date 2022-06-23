@@ -2,7 +2,7 @@
 %Jeremy Dionn     - C14200206
 %Wendy Santoso    - C14200036
 
-#persamaan y = ?x2 + x + 0.75
+#persamaan y = -x2 + x + 0.75
 f = @(x,y) -x.^2 + x +0.75 - y;
 ezplot(f);
 
@@ -34,5 +34,7 @@ while(tempx > -6)
   y = [y; tempy];
   tempx -= 0.1;
 end
+
+#dipisah karena pada -0.2 grafik mengalami asimtoot
 
 plot(x, y);
